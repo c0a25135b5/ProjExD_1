@@ -12,16 +12,16 @@ def main():
     bg_img = pg.image.load("fig/pg_bg.jpg")
     kk_img = pg.image.load("fig/3.png") #こうかとん読み込み
     kk_img = pg.transform.flip(kk_img, True, False) #こうかとん反転
-    tmr = 0
+    tmr = 0 #座標変更用の変数
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        screen.blit(bg_img, [0, 0]) #プログラムは上から順に実行→順番に注意
+        screen.blit(bg_img, [-tmr, 0]) #プログラムは上から順に実行→順番に注意
         screen.blit(kk_img, [300, 200]) #こうかとん貼り付け
         pg.display.update()
         tmr += 1        
-        clock.tick(10)
+        clock.tick(200) #FPS
 
 
 if __name__ == "__main__":

@@ -15,22 +15,25 @@ def main():
     kk_img = pg.transform.flip(kk_img, True, False) #こうかとん反転
     kk_rct = kk_img.get_rect() #こうかとんのレクト
     kk_rct.center = 300, 200
-    screen.blit(kk_img, kk_rct)
     tmr = 0 #座標変更用の変数
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
         key_lst = pg.key.get_pressed()
+        x1 = 0
+        x2 = 0
+        y1 = 0
+        y2 = 0
         if key_lst[pg.K_UP]:
-            kk_rct.move_ip(0, -1)
+            y1 = -1
         if key_lst[pg.K_DOWN]:
-            kk_rct.move_ip(0, 1)
+            y2 = 1
         if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip(-1, 0)
+            x1 = -1
         if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip(1, 0)
-
+            x2 = 2
+        kk_rct.move_ip(x1 + x2 - 1, y1 + y2)
 
         x = tmr % 3200 
         screen.blit(bg_img, [-x, 0]) #プログラムは上から順に実行→順番に注意

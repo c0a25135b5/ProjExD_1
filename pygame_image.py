@@ -10,6 +10,7 @@ def main():
     screen = pg.display.set_mode((800, 600))
     clock  = pg.time.Clock()
     bg_img = pg.image.load("fig/pg_bg.jpg")
+    bg_img2 = pg.transform.flip(bg_img, True, False)
     kk_img = pg.image.load("fig/3.png") #こうかとん読み込み
     kk_img = pg.transform.flip(kk_img, True, False) #こうかとん反転
     tmr = 0 #座標変更用の変数
@@ -17,7 +18,10 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        screen.blit(bg_img, [-tmr, 0]) #プログラムは上から順に実行→順番に注意
+        x = tmr % 3200 
+        screen.blit(bg_img, [-x, 0]) #プログラムは上から順に実行→順番に注意
+        screen.blit(bg_img2, [-x+1600, 0])
+        screen.blit(bg_img, [-x+3200, 0])
         screen.blit(kk_img, [300, 200]) #こうかとん貼り付け
         pg.display.update()
         tmr += 1        
